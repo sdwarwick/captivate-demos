@@ -32,6 +32,14 @@ if (!mylib_loaded) {
 
 		//debugger;
 	
+		// these are defined in captivate and used in analysis
+		numberOfRightAnswers = 0;
+		numberOfQuestions = 0;
+		baseScore = 0;
+		baseMaxScore = 0;
+		bonusScore = 0;
+		bonusMaxScore = 0;
+
 		// the right answer button is selected, signal this internal button
 		var theRightAnswers = {
 			"Question_T_1" : "Answer_1",
@@ -40,14 +48,6 @@ if (!mylib_loaded) {
 			"Question_F_4" : "Answer_4",
 			"Question_T_5" : "Answer_5"
 		}
-
-		// these are defined in captivate and used in analysis
-		numberOfRightAnswers = 0;
-		numberOfQuestions = 0;
-		baseScore = 0;
-		baseMaxScore = 0;
-		bonusScore = 0;
-		bonusMaxScore = 0;
 		
 		//check each of the right answer button for state, if selected,  signal to captivate
 		for (rightAnswerButton in theRightAnswers) {
@@ -81,7 +81,8 @@ if (!mylib_loaded) {
 		bonusMaxScore = bonusMaxScore + answerValue;
 		
 		if (numberOfRightAnswers >= 4) {
-			cp.SubmitInteractions(rightAnswerSenderButton, cp.QuestionStatusEnum.CORRECT, 0);
+			cp.SubmitInteractions(rightAnswerSenderButton, 
+										  cp.QuestionStatusEnum.CORRECT, 0);
 			bonusScore = bonusScore + answerValue;
 		}
 			
@@ -91,14 +92,42 @@ if (!mylib_loaded) {
 		bonusMaxScore = bonusMaxScore + answerValue;
 		
 		if (numberOfRightAnswers == 5) {
-			cp.SubmitInteractions(rightAnswerSenderButton, cp.QuestionStatusEnum.CORRECT, 0);
+			cp.SubmitInteractions(rightAnswerSenderButton,
+										   cp.QuestionStatusEnum.CORRECT, 0);
 			bonusScore = bonusScore + answerValue;
 		}
-
-		 
-		
 
 		cpCmndNextSlide = 1;
 
 	}
+	
+	
+	function fullScreenButton() {
+let j = $('[id^="fullscreen"]').on('click', function (e) {
+let i = parent.document.getElementsByTagName("iframe")[0]
+        if (i == null) {
+            i = document.getElementById("main_container")
+        }
+i.requestFullScreen && i.requestFullScreen();
+        i.webkitRequestFullScreen && i.webkitRequestFullScreen();
+        i.mozRequestFullScreen && i.mozRequestFullScreen();
+        i.msRequestFullscreen && i.msRequestFullscreen();
+});
+};
+function cancelFullScreenButton() {
+let j = $('[id^="stdscreen"]').on('click', function (e) {
+let i = parent.document;
+        if (i == null) {
+            i = document.getElementById("main_container")
+        }
+i.cancelFullScreen && i.cancelFullScreen();
+        i.webkitCancelFullScreen && i.webkitCancelFullScreen();
+        i.mozCancelFullScreen && i.mozCancelFullScreen();
+        i.exitFullscreen && i.exitFullscreen();
+});
+};
+fullScreenButton();
+cancelFullScreenButton();
+
+	
 }
