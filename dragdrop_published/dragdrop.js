@@ -40,7 +40,7 @@ if (!knowledge_points) {
 
 	}
 
-	var team_points = [10, 10, 10,
+	var team_points = [0, 10, 10,
 		10, 10, 10, 10, 10,
 		10, 10, 10, 10, 10,
 		10, 10, 10, 10];
