@@ -1,6 +1,6 @@
 if (!mylib_loaded) {
 
-	console.log("loaded");
+	console.log("multichoice.js");
 	var mylib_loaded  = true
 
 	$('div[id^="Question"].cp-frameset').on("click", manageToggleButtons);
